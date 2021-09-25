@@ -36,10 +36,24 @@ const login = createAsyncThunk(
   }
 );
 
+const getUser = createAsyncThunk("user/get-info", async (args, thunkApi) => {
+  try {
+    const response = await APIClient.getUser();
+
+    return response;
+  } catch (error) {
+    return thunkApi.rejectWithValue(error);
+  }
+});
+
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    removeUser: (state) => {
+      state.user = null;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(signup.pending, (state, action) => {
       state.isLoading = true;
@@ -61,8 +75,14 @@ const userSlice = createSlice({
     builder.addCase(login.rejected, (state, action) => {
       state.isLoading = false;
     });
+
+    builder.addCase(getUser.fulfilled, (state, action) => {
+      state.user = action.payload.data;
+    });
   },
 });
 
-export { signup, login };
+let { removeUser } = userSlice.actions;
+
+export { signup, login, getUser, removeUser };
 export default userSlice.reducer;

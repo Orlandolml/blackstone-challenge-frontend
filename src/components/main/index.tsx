@@ -13,16 +13,20 @@ import {
   deleteTodo,
   updateTodo,
 } from "../../redux/todosSlice";
+import { getUser } from "../../redux/userSlice";
 
 const Main = () => {
   const [todoDate, setTodoDate] = useState<string>("");
   const [todoValue, setTodoValue] = useState<string>("");
 
   useEffect(() => {
+    dispatch(getUser());
     dispatch(getTodos());
   }, []);
 
   const dispatch = useAppDispatch();
+
+  const authUser = useAppSelector((state) => state.user.user);
 
   const todosRefs = useRef<{ [key: string]: any }>({});
 
@@ -75,8 +79,10 @@ const Main = () => {
 
   return (
     <div className="app-content-container">
+      <h1>Welcome {authUser?.name + " " + authUser?.lastName}</h1>
       <div className="content-header">
         <AddTodo
+          showAddButton
           value={todoValue}
           onTodoSubmitPress={addTodo}
           dueDateValue={todoDate || ""}

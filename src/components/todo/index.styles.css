@@ -1,5 +1,11 @@
 h3 {
-  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0px !important;
+}
+
+p {
   margin-bottom: 0px !important;
 }
 
@@ -24,7 +30,7 @@ h3 {
 }
 
 .todo-content-container {
-  width: 80%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;

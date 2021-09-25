@@ -6,6 +6,10 @@
   margin-bottom: 12px;
 }
 
+.modal-content-container .add-todo-container .todo-input {
+  max-width: 50%;
+}
+
 .ant-modal-body {
   height: 100%;
   padding-bottom: 12px;
@@ -21,6 +25,13 @@
 }
 
 .modal-title h1 {
-  max-height: 15em;
+  max-height: 14em;
   margin-bottom: 0px;
+}
+
+@media (max-width: 800px) {
+  .modal-content-container .add-todo-container .todo-input {
+    max-width: 100%;
+    margin-bottom: 12px;
+  }
 }
