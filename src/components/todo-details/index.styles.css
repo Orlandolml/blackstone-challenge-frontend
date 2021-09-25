@@ -1,0 +1,26 @@
+.modal-content-container {
+  height: 36em;
+}
+
+.modal-content-container .add-todo-container {
+  margin-bottom: 12px;
+}
+
+.ant-modal-body {
+  height: 100%;
+  padding-bottom: 12px;
+}
+
+.ant-modal-footer {
+  margin-top: 12px;
+}
+
+.modal-title {
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
+.modal-title h1 {
+  max-height: 15em;
+  margin-bottom: 0px;
+}

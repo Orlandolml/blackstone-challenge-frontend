@@ -1,0 +1,14 @@
+.todo-list-container {
+  flex: 1;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.ant-spin-container {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.ant-spin-container > div {
+  min-height: 0px !important;
+}

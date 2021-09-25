@@ -1,0 +1,42 @@
+.add-todo-container {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-input {
+  min-height: 46px;
+  margin-right: 24px;
+}
+
+.date-picker {
+  flex: 1;
+  min-height: 46px;
+}
+
+.ant-input-group-wrapper {
+  width: 60% !important;
+}
+
+.ant-input-group-addon {
+  padding: 2px !important;
+}
+
+.ant-input-group-addon .add-button {
+  height: 38px;
+}
+
+@media (max-width: 800px) {
+  .add-todo-container {
+    flex-direction: column;
+  }
+
+  .ant-input-group-wrapper {
+    margin-bottom: 24px;
+    width: 100% !important;
+  }
+
+  .ant-input-group-addon {
+    width: 100%;
+  }
+}
