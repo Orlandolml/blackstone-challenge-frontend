@@ -77,6 +77,7 @@ const Main = () => {
     <div className="app-content-container">
       <div className="content-header">
         <AddTodo
+          showAddButton
           value={todoValue}
           onTodoSubmitPress={addTodo}
           dueDateValue={todoDate || ""}

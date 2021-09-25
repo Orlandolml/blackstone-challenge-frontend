@@ -1,5 +1,11 @@
 h3 {
-  width: 100%;
+  width: 70%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-bottom: 0px !important;
+}
+
+p {
   margin-bottom: 0px !important;
 }
 

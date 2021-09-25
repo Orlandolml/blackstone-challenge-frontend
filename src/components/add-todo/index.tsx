@@ -8,6 +8,7 @@ interface AddTodoProps {
   value?: string;
   isDisabled?: boolean;
   dueDateValue?: string;
+  showAddButton: boolean;
   onTodoSubmitPress?: React.ComponentProps<"input">["onClick"];
   handleDateChange?: (value: any, dateString: string) => void;
   handleInputChange?: React.ComponentProps<"input">["onChange"];
@@ -18,6 +19,7 @@ const AddTodo = React.forwardRef(
     {
       value,
       dueDateValue,
+      showAddButton,
       handleDateChange,
       onTodoSubmitPress,
       handleInputChange,
@@ -41,18 +43,20 @@ const AddTodo = React.forwardRef(
             />
           }
           addonAfter={
-            <Button
-              type="primary"
-              className="add-button"
-              onClick={onTodoSubmitPress}
-              disabled={!dueDateValue || !value}
-            >
-              <PlusCircleOutlined
-                style={{
-                  fontSize: 22,
-                }}
-              />
-            </Button>
+            showAddButton ? (
+              <Button
+                type="primary"
+                className="add-button"
+                onClick={onTodoSubmitPress}
+                disabled={!dueDateValue || !value}
+              >
+                <PlusCircleOutlined
+                  style={{
+                    fontSize: 22,
+                  }}
+                />
+              </Button>
+            ) : null
           }
         />
         <DatePicker

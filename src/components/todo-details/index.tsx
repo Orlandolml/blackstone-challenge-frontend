@@ -60,6 +60,7 @@ const TodoDetails = ({ todo, visible, onOkPress, onCancelPress }: any) => {
       <div className="modal-content-container">
         <AddTodo
           value={taskValue}
+          showAddButton={false}
           dueDateValue={dueDate}
           handleDateChange={(date, dateString) => {
             setDueDate(dateString);
