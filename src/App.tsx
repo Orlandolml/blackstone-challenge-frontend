@@ -8,6 +8,7 @@ import APIClient from "./modules/APIClient";
 
 import { setAuthChecked } from "./redux/appSlice";
 import { useAppDispatch, useAppSelector } from "./hooks";
+import { removeUser } from "./redux/userSlice";
 
 const { Content } = Layout;
 
@@ -22,6 +23,8 @@ function App() {
     if (localStorageToken) {
       APIClient.setAuthenticatedInstance(localStorageToken);
       dispatch(setAuthChecked(true));
+    } else {
+      dispatch(removeUser());
     }
   }, []);
 
@@ -31,6 +34,7 @@ function App() {
         onExtraButtonPress={() => {
           APIClient.unsetAuthenticatedInstance();
           dispatch(setAuthChecked(false));
+          dispatch(removeUser());
         }}
         showExtraButton={isAuthChecked}
       ></Header>
