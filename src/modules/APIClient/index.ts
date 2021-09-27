@@ -17,7 +17,7 @@ class APIClient {
           message.error(response.data.error.message);
           setTimeout(() => {
             window.location.reload();
-          }, 500);
+          }, 1000);
         } else {
           message.error(response.data.error.message);
         }
