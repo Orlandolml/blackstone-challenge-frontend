@@ -40,10 +40,10 @@
 .empty-list-container {
   flex: 1;
   display: flex;
+  height: fit-content;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  height: calc(100vh - 350px);
 }
 
 .empty-list-image {

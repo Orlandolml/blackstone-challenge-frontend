@@ -15,10 +15,17 @@ interface TodoDetailsProps {
 
 const TodoDetails = ({ todo, visible, onCancelPress }: TodoDetailsProps) => {
   const [taskValue, setTaskValue] = useState(todo.task);
+  const [initialDueDateValue, setInitialDueDateValue] = useState(todo.dueDate);
   const [initialTaskValue, setInitialValue] = useState(todo.task);
   const [dueDate, setDueDate] = useState<string | undefined>(todo.dueDate);
 
   const dispatch = useAppDispatch();
+
+  const handleAfterClose = () => {
+    if (!taskValue) setTaskValue(initialTaskValue);
+
+    if (!dueDate) setDueDate(initialDueDateValue);
+  };
 
   return (
     <Modal
@@ -26,10 +33,16 @@ const TodoDetails = ({ todo, visible, onCancelPress }: TodoDetailsProps) => {
       closable={false}
       visible={visible}
       onCancel={onCancelPress}
+      afterClose={handleAfterClose}
       footer={[
         <Button
           type="primary"
-          disabled={(!taskValue && !dueDate) || initialTaskValue === taskValue}
+          disabled={
+            (!taskValue && !dueDate) ||
+            (initialTaskValue === taskValue &&
+              initialDueDateValue === dueDate) ||
+            !taskValue
+          }
           onClick={() => {
             if (initialTaskValue !== taskValue) {
               wrapThunkAction(
