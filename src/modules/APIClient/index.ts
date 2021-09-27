@@ -14,9 +14,13 @@ class APIClient {
       if (response.data.error && response.data.error.message) {
         if (response.data.error.code === "TOKEN_EXPIRED") {
           this.unsetAuthenticatedInstance();
-          window.location.reload();
+          message.error(response.data.error.message);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        } else {
+          message.error(response.data.error.message);
         }
-        message.error(response.data.error.message);
         return Promise.reject(
           new Error(response.data.error.message || "UNDEFINED_ERROR")
         );
