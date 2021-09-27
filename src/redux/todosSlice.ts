@@ -73,6 +73,9 @@ const todosSlice = createSlice({
     setVisibilityFilter(state, action) {
       state.visibilityFilter = action.payload;
     },
+    removeTodos(state) {
+      state.todos = [];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(createTodo.pending, (state, action) => {
@@ -133,4 +136,4 @@ const todosSlice = createSlice({
 
 export default todosSlice.reducer;
 export { createTodo, getTodos, updateTodo, deleteTodo };
-export const { setVisibilityFilter } = todosSlice.actions;
+export const { removeTodos, setVisibilityFilter } = todosSlice.actions;

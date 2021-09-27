@@ -55,9 +55,7 @@ const Login = ({
         APIClient.setAuthenticatedInstance(action.payload.token);
         dispatch(setAuthChecked(true));
       })
-      .catch((error) => {
-        message.error(error.payload.message);
-      });
+      .catch((error) => {});
   };
 
   return (

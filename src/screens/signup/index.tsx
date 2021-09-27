@@ -8,7 +8,7 @@ import {
   LockOutlined,
   EyeInvisibleOutlined,
 } from "@ant-design/icons";
-import { Input, Layout, Button, Spin, message } from "antd";
+import { Input, Layout, Button, Spin } from "antd";
 import "./index.styles.css";
 import withFormik from "./withFormik";
 import Header from "../../components/header";

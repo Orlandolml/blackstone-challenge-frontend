@@ -1,5 +1,5 @@
-import { Button, message, Modal } from "antd";
-import React, { SyntheticEvent, useState } from "react";
+import { Button, Modal } from "antd";
+import React, { useState } from "react";
 import "./index.styles.css";
 import AddTodo from "../add-todo";
 import { Todo } from "../../shared/types";
@@ -8,13 +8,12 @@ import { updateTodo } from "../../redux/todosSlice";
 import { wrapThunkAction } from "../../utils/reduxToolkit";
 
 interface TodoDetailsProps {
-  todo?: Todo;
+  todo: Todo;
   visible: boolean;
-  onOkPress: () => any;
-  onCancelPress: () => any;
+  onCancelPress: (event?) => any;
 }
 
-const TodoDetails = ({ todo, visible, onOkPress, onCancelPress }: any) => {
+const TodoDetails = ({ todo, visible, onCancelPress }: TodoDetailsProps) => {
   const [taskValue, setTaskValue] = useState(todo.task);
   const [initialTaskValue, setInitialValue] = useState(todo.task);
   const [dueDate, setDueDate] = useState<string | undefined>(todo.dueDate);
@@ -30,32 +29,27 @@ const TodoDetails = ({ todo, visible, onOkPress, onCancelPress }: any) => {
       footer={[
         <Button
           type="primary"
-          disabled={!taskValue || !dueDate}
+          disabled={(!taskValue && !dueDate) || initialTaskValue === taskValue}
           onClick={() => {
-            wrapThunkAction(
-              dispatch(
-                updateTodo({
-                  todoId: todo.id,
-                  todoData: { task: taskValue, dueDate },
-                })
+            if (initialTaskValue !== taskValue) {
+              wrapThunkAction(
+                dispatch(
+                  updateTodo({
+                    todoId: todo.id,
+                    todoData: { task: taskValue, dueDate },
+                  })
+                )
               )
-            )
-              .then(() => {
-                onCancelPress();
-              })
-              .catch((error) => {
-                message.error(error.message);
-              });
+                .then(() => {
+                  onCancelPress();
+                })
+                .catch((error) => {});
+            }
           }}
         >
           Save
         </Button>,
       ]}
-      onOk={() => {
-        if (initialTaskValue !== taskValue) {
-          onOkPress();
-        }
-      }}
     >
       <div className="modal-content-container">
         <AddTodo
