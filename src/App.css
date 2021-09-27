@@ -52,12 +52,6 @@
   min-width: 180px;
 }
 
-.ant-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .ant-list-item {
   padding: 0px !important;
   transition: all 300ms ease !important;
