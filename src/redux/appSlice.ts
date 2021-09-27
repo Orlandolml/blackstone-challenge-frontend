@@ -15,7 +15,6 @@ const appSlice = createSlice({
       state.authChecked = action.payload;
     },
   },
-  extraReducers: (builder) => {},
 });
 
 export const { setAuthChecked } = appSlice.actions;
