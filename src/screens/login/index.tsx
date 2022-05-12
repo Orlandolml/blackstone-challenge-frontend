@@ -35,8 +35,13 @@ const Login = ({
     if (hasErrors(errors)) {
       let { email, password } = errors;
 
-      setEmailError(email || "");
-      setPasswordError(password || "");
+      if (!values.email.length) {
+        setEmailError(email || "");
+      }
+      
+      if (!values.password.length) {
+        setPasswordError(password || "");
+      }
     } else {
       if (emailError) {
         setEmailError(null);
@@ -69,13 +74,15 @@ const Login = ({
           <Input
             name="email"
             placeholder="email"
+            id="login-email-input"
             className="email-input"
             prefix={<UserOutlined />}
             onChange={handleChange("email")}
           />
-          <p>{emailError}</p>
+          <p></p>
           <Input.Password
             name="password"
+            id="login-password-input"
             prefix={<LockOutlined />}
             placeholder="input password"
             onChange={handleChange("password")}
@@ -83,7 +90,7 @@ const Login = ({
               visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
             }
           />
-          <p>{passwordError}</p>
+          <p></p>
         </div>
         <div className="login-footer">
           <Button
@@ -96,7 +103,7 @@ const Login = ({
           <span>
             Not a member?
             <Link to="/signup">
-              <Button type="link">Signup</Button>
+              <Button id="signup-hyperlink-button" type="link">Signup</Button>
             </Link>
           </span>
         </div>

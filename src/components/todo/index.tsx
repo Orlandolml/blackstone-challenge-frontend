@@ -4,6 +4,7 @@ import React, { MouseEventHandler, useState, LegacyRef } from "react";
 import "./index.styles.css";
 import { Todo } from "../../shared/types";
 import TodoDetails from "../todo-details";
+import moment from "moment";
 
 interface TodoProps {
   todo: Todo;
@@ -36,7 +37,11 @@ const Todo = React.forwardRef(
       >
         <div className="todo-content-container">
           <h3>{todo.task}</h3>
-          <p>{new Date(todo.dueDate || "").toDateString()}</p>
+          {
+            todo.dueDate && (
+              <p>{moment(todo.dueDate).utc().format('MM/DD/YYYY')}</p>
+            )
+          }
         </div>
         <div className="todo-actions-container">
           <Button

@@ -1,0 +1,16 @@
+name: Run on merge
+
+on:
+  pull_request:
+    types:
+      - "closed"
+    branches:
+      - "develop"
+jobs:
+  run-on-merge:
+    if: github.event.pull_request.merged == true
+    runs-on: self-hosted
+    steps:
+      - name : Run
+        run: |
+          echo 'Start!'
