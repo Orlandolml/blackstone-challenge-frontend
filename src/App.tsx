@@ -19,10 +19,12 @@ function App() {
   const isAuthChecked = useAppSelector((state) => state.app.authChecked);
 
   useEffect(() => {
-    let localStorageToken = localStorage.getItem("token");
+    let token = document.cookie.split(';').filter((cookie) => cookie.includes('token'))[0];
 
-    if (localStorageToken) {
-      APIClient.setAuthenticatedInstance(localStorageToken);
+    if (token) {
+      const key = token.indexOf('=') + 1;
+
+      APIClient.setAuthenticatedInstance(token.substring(key));
       dispatch(setAuthChecked(true));
     } else {
       dispatch(removeUser());

@@ -106,6 +106,7 @@ const Signup = ({
               <Input
                 name="name"
                 placeholder="Name"
+                id="signup-name-input"
                 prefix={<UserOutlined />}
                 onChange={handleChange("name")}
               />
@@ -114,12 +115,14 @@ const Signup = ({
                 name="lastName"
                 placeholder="Last name"
                 prefix={<UserOutlined />}
+                id="signup-last-name-input"
                 onChange={handleChange("lastName")}
               />
               <p>{lastNameError}</p>
               <Input
                 name="email"
                 placeholder="Email"
+                id="signup-email-input"
                 prefix={<MailOutlined />}
                 onChange={handleChange("email")}
               />
@@ -128,6 +131,7 @@ const Signup = ({
                 name="password"
                 placeholder="Password"
                 prefix={<LockOutlined />}
+                id="signup-password-input"
                 onChange={handleChange("password")}
                 iconRender={(visible) =>
                   visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
@@ -138,6 +142,7 @@ const Signup = ({
                 prefix={<LockOutlined />}
                 name="passwordConfirmation"
                 placeholder="Password confirmation"
+                id="signup-password-confirmation-input"
                 onChange={handleChange("passwordConfirmation")}
                 iconRender={(visible) =>
                   visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
@@ -147,8 +152,9 @@ const Signup = ({
             </div>
             <Button
               type="primary"
-              disabled={hasErrors(errors)}
               onClick={onSignupPress}
+              id="signup-submit-button"
+              disabled={hasErrors(errors)}
             >
               Signup!
             </Button>

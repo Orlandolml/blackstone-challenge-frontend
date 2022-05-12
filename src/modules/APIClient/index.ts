@@ -7,7 +7,7 @@ class APIClient {
   constructor() {
     this.client = Axios.create({
       timeout: 10000,
-      baseURL: "http://localhost:5000",
+      baseURL: "http://localhost:3000",
     });
 
     this.client.interceptors.response.use((response: AxiosResponse) => {
@@ -33,13 +33,15 @@ class APIClient {
   setAuthenticatedInstance(token: string) {
     if (token) {
       this.client.defaults.headers.common.Authorization = `Bearer ${token}`;
-      localStorage.setItem("token", token);
+      let date = new Date();
+
+      document.cookie = `token=${token}${date.setTime(date.getTime() + 4 * 60 * 60)}; path=/`
     }
   }
 
   unsetAuthenticatedInstance() {
     this.client.defaults.headers.common.Authorization = null;
-    localStorage.removeItem("token");
+    document.cookie = 'token' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
 
   signup(userData: User) {
